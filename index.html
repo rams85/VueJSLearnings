@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <link rel="icon" href="/favicon.ico" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <style>
+      .active {
+        background-color: #ff43bf;
+        color: #fff;
+        padding: 5px;
+      }
+      .error {
+        color: red;
+      }
+    </style>
+
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <button onclick="myFunction()">Click Me!</button>      
+      
+    <script type="module">
+      import { createApp } from 'vue'
+      import MyComponent from './src/main.js'
+    
+      createApp(MyComponent).mount('#app');
+    </script>
+    <!-- Creating first app  -->
+    <h2>---------------------------------</h2>
+    <h2>1. VueJS - Creating first app</h2>
+    <h2>---------------------------------</h2>
+    <div id = "vue_det">
+      <h1>Firstname : {{fname}}</h1>
+      <h1>Lastname : {{lname}}</h1>
+      <h1>Address : </h1>
+      <div v-html ="address"></div>
+      <img v-bind:src = "imgSrc" width = "300" height = "200" />
+    </div>
+    
+    <!-- Components -->
+    <h2>---------------------------------</h2>
+    <h2>2. VueJS - Creating components</h2>
+    <h2>---------------------------------</h2>
+    <div id="component1"><testcomponent></testcomponent></div>
+    <div id="component2"><testcomponent></testcomponent></div>
+
+    <div id = 'data-binding'>
+      <component v-bind:is = view></component>
+    </div>
+
+    <h2>---------------------------------</h2>
+    <h2>3. VueJS - Creating Computed Properties</h2>
+    <h2>---------------------------------</h2>
+    <div id="computed-props">
+      <fieldset>
+        <label>Firstname</label>
+        <input type="text" v-model="firstname" />
+      </fieldset>
+      <fieldset>
+        <label>Lastname</label>
+        <input type="text" v-model="lastname" />
+      </fieldset>
+        <h1>My name is {{firstname}} {{lastname}}</h1>
+        <h1>Using computed method : {{getfullname}}</h1>
+    </div>
+
+    <h2>---------------------------------</h2>
+    <h2>3.1. Creating Computed Properties with more explanation</h2>
+    <h2>---------------------------------</h2>
+    <div id="get-random-numbers">
+      <h2>Radom number using normal function {{getrandfunction()}}</h2><br />
+      <h2>Radom number using normal function {{getrandfunction()}}</h2><br />
+      <h2>Radom number using normal computed property {{getrandcomputed}}</h2><br />
+      <h2>Radom number using normal computed property {{getrandcomputed}}</h2><br />
+    </div>
+
+    <h2>---------------------------------</h2>
+    <h2>3.2. Creating Computed Properties with get and set methods</h2>
+    <h2>---------------------------------</h2>
+    <div id="comptd-methods-get-set">
+      <input type = "text" v-model = "fullname"><br />
+      <h2>Firstname: {{firstname}}</h2>
+      <h2>Lastname: {{lastname}}</h2>
+    </div>
+
+    <h2>---------------------------------</h2>
+    <h2>4. VueJS - Creating Watch Property</h2>
+    <h2>---------------------------------</h2>
+    <div id="watch-property">
+      <fieldset>
+        <label>Litre</label>
+        <input type="text" v-model="litre" />
+      </fieldset>
+      <fieldset>
+        <label>Milli Litre</label>
+        <input type="text" v-model="millilitre" />
+      </fieldset>
+    </div>
+
+    <h2>---------------------------------</h2>
+    <h2>5. VueJS - Bind Property</h2>
+    <h2>---------------------------------</h2>
+    <div id="bind-property">
+      <a href="hreflink" target="_blank">Click Me 1</a><br />
+      <a href="{{hreflink}}" target="_blank">Click Me 2</a><br />
+      <a :href="hreflink" target="_blank">Click Me 3</a><br />
+    </div>
+
+    <h2>---------------------------------</h2>
+    <h2>5.1 Bind Property - Adding classes to Div</h2>
+    <h2>---------------------------------</h2>
+    <div id="bind-property-class">
+      <a href="hreflink" target="_blank" v-bind:class="{active:isactive}">{{title}}</a><br />
+      <a href="hreflink" target="_blank" v-bind:class="{active: isActive, error: isError}">{{title}}</a><br />
+      <a href="{{hreflink}}" target="_blank">Click Me 2</a><br />
+      <a :href="hreflink" target="_blank">Click Me 3</a><br />
+    </div>
+
+    <!-- Multiple classes -->
+    <div id="bind-property-classes">
+      <a href="hreflink" target="_blank" v-bind:class="{active: isActive, error: isError}">{{title}}</a><br />
+      <a href="{{hreflink}}" target="_blank">Click Me 2</a><br />
+      <a :href="hreflink" target="_blank">Click Me 3</a><br />
+    </div>
+
+    <div id = "databinding-form-tags">
+      <h3>Radio</h3>
+      <input type = "radio" id = "black" value = "Black" v-model = "picked">Black
+      <input type = "radio" id = "white" value = "White" v-model = "picked">White
+      <h3>Radio element clicked : {{picked}} </h3>
+      <hr/>
+      <h3>Select</h3>
+      <select v-model = "languages">
+          <option disabled value = "">Please select one</option>
+          <option>Java</option>
+          <option>Javascript</option>
+          <option>Php</option>
+          <option>C</option>
+          <option>C++</option>
+      </select>
+      <h3>Languages Selected is : {{ languages }}</h3>
+      <hr/>
+    </div>
+  
+    <h2>---------------------------------</h2>
+    <h2>6. VueJS - Events</h2>
+    <h2>---------------------------------</h2>
+    <div id="vue-events">
+      <input type="text" v-model="num1" />
+      <input type="text" v-model="num2" />
+      <!-- <button v-on:click="sum">Sum</button> -->
+      <button @click="sum">Sum</button>
+      <div>Total: {{total}}</div>
+    </div>
+
+    <h2>---------------------------------</h2>
+    <h2>6.1 VueJS - Multiple Events </h2>
+    <h2>---------------------------------</h2>
+    <div id = "data-binding-events">
+      <div v-bind:style = "styleobj" v-on:mouseover = "changebgcolor" v-on:mouseout = "originalcolor"></div>
+  </div>
+
+    <h2>---------------------------------</h2>
+    <h2>6.2 VueJS - Event Modifiers</h2>
+    <h2>---------------------------------</h2>
+    <div id="bind-event-modifiers">
+      <!-- <button v-on:click="countme">Count</button> // Increment 1s every on click --> 
+      <button v-on:click.once="countme">Count</button> <!-- // Increment only once every on click -->
+      <!-- <button v-on:click.prevent="countme">Count</button> -->
+      <span>{{num}}</span>
+    </div>
+
+    <h2>---------------------------------</h2>
+    <h2>6.3 VueJS - Key Modifiers</h2>
+    <h2>---------------------------------</h2>
+    <div id="bind-key-modifiers">
+      <input type="text" v-on:keyup.enter="PressEnterKey" placeholder="Enter a text" /><br />
+      {{name}}
+    </div>
+
+    <h2>---------------------------------</h2>
+    <h2>7. VueJS - Conditional Rendering</h2>
+    <h2>---------------------------------</h2>
+    <div id="condnl-rendering-if">
+      <button v-on:click="showme">ShowMe</button><b>{{show}}</b><br />
+      <h1 v-if = "show">This is h1 tag</h1>
+      <h2 v-else>This is h2 tag</h2>
+    </div>
+
+    <h2>---------------------------------</h2>
+    <h2>7.1 VueJS - v-show</h2>
+    <h2>---------------------------------</h2>
+    <div id="condnl-rendering-show">
+      <button v-on:click = "showdata">Click Me</button>
+      <div v-show = "show">
+        <b>V-Show:</b>
+        <img src = "./images/vuejs-logo.jpg" width = "100" height = "100" />
+     </div>
+    </div>
+
+    <h2>---------------------------------</h2>
+    <h2>8. VueJS - List Rendering    </h2>
+    <h2>---------------------------------</h2>
+    <div id="list-rendering">
+      <input type="text" v-on:keyup.enter="CompnayNames" placeholder="Enter the company name and press Enter key" v-bind:style="styleTextbox" />
+      <h3 style="margin: 20px 0;" v-if="items.length>0">The Company Names Are</h3>
+      <ul>
+        <li v-for="a in items">{{a}}</li>
+      </ul>
+    </div>
+
+    <h2>---------------------------------</h2>
+    <h2>9. VueJS - Transition - Fade  </h2>
+    <h2>---------------------------------</h2>
+      <style>
+        .fade-enter-active, .fade-leave-active {
+           transition: opacity 2s;
+        }
+        .fade-enter, .fade-leave-to {
+           opacity: 0;
+        }
+     </style>
+    <div id="transition-ex1">
+      <button v-on:click = "show = !show">Click Me</button>
+      <transition name="fade">
+        <p v-show = "show" v-bind:style = "styleobj">Animation Example</p>
+      </transition>
+    </div>
+
+
+    <h2>---------------------------------</h2>
+    <h2>9.1 VueJS - Transition - TranslateX  </h2>
+    <h2>---------------------------------</h2>
+      <style>
+        .shiftx-enter-active, .shiftx-leave-active {
+           transition: all 2s ease-in-out;
+        }
+        .shiftx-enter, .shiftx-leave-to /* .fade-leave-active below version 2.1.8 */ {
+           transform :  translateX(100px);
+        }
+     </style>
+    <div id="transition-translateX">
+        <button v-on:click = "show = !show">Click Me</button>
+        <transition name = "shiftx">
+           <p v-show = "show">
+              <img src = "./images/vuejs-logo.jpg" style = "width:100px;height:100px;" />
+           </p>
+        </transition>
+     </div>
+
+    <h2>---------------------------------</h2>
+    <h2>9.2 VueJS - JavaScript Hooks    </h2>
+    <h2>---------------------------------</h2>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+    <div id = "transition-js-hooks">
+       <button @click = "show = !show">
+          <span style = "font-size:25px;">Toggle</span>
+       </button>
+       <transition  v-on:before-enter = "beforeEnter"
+          v-on:enter = "enter"
+          v-on:leave = "leave"
+          v-bind:css = "false">
+          <p v-if = "show" style = "font-size:25px;">Animation Example with velocity</p>
+       </transition>
+    </div>
+
+    <h2>---------------------------------</h2>
+    <h2>10. VueJS - Directives - Create Custom Directive </h2>
+    <h2>---------------------------------</h2>
+    <div id="custom-directive1">
+      <div v-changestyle1>Custom Directives</div>
+    </div>
+    
+    <h2>---------------------------------</h2>
+    <h2>10.1 VueJS - Directives - Binding values to Custom Directive </h2>
+    <h2>---------------------------------</h2>
+    <div id="custom-directive2">
+      <div v-changestyle2="{color:'green'}">Custom Directives</div>
+    </div>
+    
+    
+    <h2>---------------------------------</h2>
+    <h2>10.2 VueJS - Directives - Filters which helps text formatting </h2>
+    <h2>---------------------------------</h2>
+    <div id="custom-filter">
+      <input type="text" v-model="name" placeholder="Enter a name" />
+      <div>Letter Count is {{name | countLetters}}</div>
+    </div>
+    
+  </body>
+</html>
